@@ -8,8 +8,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import pkg.empleado;
+import pkg.empleado.TipoEmpleado;
+
 class empleadoTest {
 
+	empleado empleado = new empleado();
+	private float ventaMes;
+	private float horaExtra;
+	private float nominaBruta;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -20,6 +28,9 @@ class empleadoTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		ventaMes=1000;
+		horaExtra=2;
+		nominaBruta=2500;
 	}
 
 	@AfterEach
@@ -28,50 +39,73 @@ class empleadoTest {
 
 	//Tipos de empleado
 	@Test
-	void testCalculoNominaBrutaVendedor() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void testCalculoNominaBrutaEncargado() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculoNominaBrutaOtro() {
-		fail("Not yet implemented");	
-	}
+    void testCalculoNominaBrutaVendedor() {
+        float expected=2160;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void testCalculoNominaBrutaEncargado() {
+        float expected=2660;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void testCalculoNominaBrutaOtro() {
+        float expected=2660;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
+        assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para "Otro"
+    }
 	
 	//Rango de ventas
-	@Test
-	void testCalculoNominaBrutaVentasNegativas() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculoNominaBrutaEntre_0_y_1000() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculoNominaBrutaEntre_1000_y_1500() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculoNominaBrutaMayor1500() {
-		fail("Not yet implemented");
-	}
-	
-	
-	
-	@Test
-	void testCalculoNominaBrutaHorasExtrasNegativas() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculoNominaBrutaHorasExtrasPositivas() {
-		fail("Not yet implemented");
-	}
-	@Test
-	void testCalculNominaNeta() {
-		fail("Not yet implemented");
-	}
+    @Test
+    void testCalculoNominaBrutaVentasNegativas() {
+        float expected=2160;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
+        assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para ventas negativas
+    }
+
+    @Test
+    void testCalculoNominaBrutaEntre_0_y_1000() {
+        float expected=2160;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void testCalculoNominaBrutaEntre_1000_y_1500() {
+    	float expected=2660;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void testCalculoNominaBrutaMayor1500() {
+    	float expected=2160;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+
+    @Test
+    void testCalculoNominaBrutaHorasExtrasNegativas() {
+    	float expected=2660;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
+        assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para horas extras negativas
+    }
+
+    @Test
+    void testCalculoNominaBrutaHorasExtrasPositivas() {
+        float expected=2160;;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
+        assertEquals(expected, resultado);
+    }
+    @Test
+    void testCalculNominaNeta() {
+        float expected=0.15f;
+        float resultado = empleado.calculNominaNeta(2600);
+        assertEquals(expected, resultado);
+    }
 
 }
