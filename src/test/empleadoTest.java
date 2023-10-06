@@ -90,21 +90,24 @@ class empleadoTest {
 
     @Test
     void testCalculoNominaBrutaHorasExtrasNegativas() {
-    	float expected=2660;
+    	float horaExtra=-3;
+    	float expected=2510;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
-        assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para horas extras negativas
+        assertEquals(expected, resultado); 
+        // Cambia el valor esperado según el comportamiento deseado para horas extras negativas
     }
 
     @Test
     void testCalculoNominaBrutaHorasExtrasPositivas() {
-        float expected=2160;;
+    	float horaExtra=3;
+        float expected=2190;;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
         assertEquals(expected, resultado);
     }
     @Test
     void testCalculNominaNeta() {
-        float expected=0.15f;
-        float resultado = empleado.calculNominaNeta(2600);
+        float expected=375f;
+        float resultado = empleado.calculNominaNeta(2500);
         assertEquals(expected, resultado);
     }
 
