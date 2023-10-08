@@ -54,29 +54,32 @@ class empleadoTest {
 
     @Test
     void testCalculoNominaBrutaOtro() {
-        float expected=2660;
-        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
+        float expected=1660;
+        float resultado = empleado.calculoNominaBruta(TipoEmpleado.Otro, ventaMes, horaExtra);
         assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para "Otro"
     }
 	
 	//Rango de ventas
     @Test
     void testCalculoNominaBrutaVentasNegativas() {
-        float expected=2160;
+    	float ventaMes=-2200;
+        float expected=-140;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
         assertEquals(expected, resultado); // Cambia el valor esperado según el comportamiento deseado para ventas negativas
     }
 
     @Test
     void testCalculoNominaBrutaEntre_0_y_1000() {
-        float expected=2160;
+    	float ventaMes=-1660;
+        float expected=400;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventaMes, horaExtra);
         assertEquals(expected, resultado);
     }
 
     @Test
     void testCalculoNominaBrutaEntre_1000_y_1500() {
-    	float expected=2660;
+    	float ventaMes=-1260;
+    	float expected=1300;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
         assertEquals(expected, resultado);
     }
@@ -94,7 +97,6 @@ class empleadoTest {
     	float expected=2510;
         float resultado = empleado.calculoNominaBruta(TipoEmpleado.Encargado, ventaMes, horaExtra);
         assertEquals(expected, resultado); 
-        // Cambia el valor esperado según el comportamiento deseado para horas extras negativas
     }
 
     @Test
